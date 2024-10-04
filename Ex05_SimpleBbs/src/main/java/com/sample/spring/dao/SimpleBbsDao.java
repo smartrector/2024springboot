@@ -46,4 +46,21 @@ public class SimpleBbsDao implements ISimpleBbsDao{
 		return dto;
 	}
 
+	@Override
+	public int writeDao(String writer, String title, String content) {
+		System.out.println("wirteDao()");
+		String query = "insert into simple_bbs (writer,title,content) values (?,?,?) ";
+		int dtoup = template.update(query,writer,title,content);
+		return dtoup;
+	}
+
+	@Override
+	public int delete(String id) {
+		System.out.println("delete()");
+		String query = "delete from simple_bbs where id = ?";
+		int dtodel = template.update(query,Integer.parseInt(id));
+		return dtodel;
+		
+	}
+
 }

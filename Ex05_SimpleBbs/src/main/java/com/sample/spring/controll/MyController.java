@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.spring.dao.ISimpleBbsDao;
 
@@ -17,7 +18,7 @@ public class MyController {
 	
 	
 	@RequestMapping("/")
-	public  String root() {
+	public String root() {
 		return "redirect:list";
 	}
 	
@@ -34,5 +35,21 @@ public class MyController {
 		model.addAttribute("dto", dao.viewDao(sId));
 		return "view";
 	}
+	
+	@RequestMapping("/writerForm")
+	public String writer() {
+		return "writerForm";
+	}
+	
+	@RequestMapping("/write")
+	public String write(HttpServletRequest request) {
+		dao.writeDao(
+				request.getParameter("writer"),
+				request.getParameter("title"),
+				request.getParameter("content")
+				);
+		return "redirect:list";
+	}
+	
 	
 }
