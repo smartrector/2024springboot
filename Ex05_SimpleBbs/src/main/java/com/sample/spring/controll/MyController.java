@@ -36,9 +36,9 @@ public class MyController {
 		return "view";
 	}
 	
-	@RequestMapping("/writerForm")
+	@RequestMapping("/writeForm")
 	public String writer() {
-		return "writerForm";
+		return "writeForm";
 	}
 	
 	@RequestMapping("/write")
@@ -48,6 +48,13 @@ public class MyController {
 				request.getParameter("title"),
 				request.getParameter("content")
 				);
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request) {
+		dao.delete(request.getParameter("id"));
+		
 		return "redirect:list";
 	}
 	
