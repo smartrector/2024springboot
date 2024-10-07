@@ -25,38 +25,38 @@ public class MyController {
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		model.addAttribute("lists", dao.listDao());
-		//model.addAttribute("count", dao.countDao());
+		model.addAttribute("count", dao.countDao());
 		return "list";
 	}
 	
-//	@RequestMapping("/view") // view?id=1
-//	public String view(HttpServletRequest request,Model model) {
-//		String sId = request.getParameter("id");
-//		model.addAttribute("dto", dao.viewDao(sId));
-//		return "view";
-//	}
-//	
-//	@RequestMapping("/writeForm")
-//	public String writer() {
-//		return "writeForm";
-//	}
-//	
-//	@RequestMapping("/write")
-//	public String write(HttpServletRequest request) {
-//		dao.writeDao(
-//				request.getParameter("writer"),
-//				request.getParameter("title"),
-//				request.getParameter("content")
-//				);
-//		return "redirect:list";
-//	}
-//	
-//	@RequestMapping("/delete")
-//	public String delete(HttpServletRequest request) {
-//		dao.delete(request.getParameter("id"));
-//		
-//		return "redirect:list";
-//	}
+	@RequestMapping("/view") // view?id=1
+	public String view(HttpServletRequest request,Model model) {
+		String sId = request.getParameter("id");
+		model.addAttribute("dto", dao.viewDao(sId));
+		return "view";
+	}
+	
+	@RequestMapping("/writeForm")
+	public String writer() {
+		return "writeForm";
+	}
+	
+	@RequestMapping("/write")
+	public String write(HttpServletRequest request) {
+		dao.writeDao(
+				request.getParameter("writer"),
+				request.getParameter("title"),
+				request.getParameter("content")
+				);
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request) {
+		dao.delete(request.getParameter("id"));
+		
+		return "redirect:list";
+	}
 	
 	
 }
