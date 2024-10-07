@@ -25,7 +25,6 @@ public class Member {
 	@Column(length=100)
 	private String name;
 	
-	@Column(name="uemail")
 	private String email;
 	private LocalDate createDate;
 }
