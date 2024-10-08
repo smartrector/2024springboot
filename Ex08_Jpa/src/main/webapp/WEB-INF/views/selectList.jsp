@@ -9,6 +9,13 @@
 </head>
 <body>
 
+총글의 개수 : ${totalElements}<br>
+총페이지 : ${totalPages}<br>
+size : ${size}<br>
+pageNumber : ${pageNumber}<br>
+number of elements : ${numberOfElements}<br>
+
+
 
 
 	<c:forEach var="member" items="${members}">

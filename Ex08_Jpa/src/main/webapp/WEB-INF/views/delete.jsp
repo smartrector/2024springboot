@@ -8,12 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
-	<c:forEach var="member" items="${members}">
-		${member.id} /	${member.name} / ${member.email}
-		<hr>
-	</c:forEach>
+	삭제완료
+	
 </body>
 </html>

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,14 @@ public class MemberService {
 	
 	public Optional<Member> view(Long id){
 		Optional<Member> member = repo.findById(id);
+		return member;
+	}
+	public void delete(Long id) {
+		repo.deleteById(id);
+	}
+	
+	public Page<Member> selectNameLike(String search,Pageable pageable){
+		Page<Member> member = repo.findByNameLike(search, pageable);
 		return member;
 	}
 }
