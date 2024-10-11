@@ -1,5 +1,8 @@
 package com.sample.spring.api;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.spring.api.request.CreateAndEditFoodRequest;
+import com.sample.spring.api.response.FoodDetailView;
+import com.sample.spring.api.response.FoodView;
 import com.sample.spring.model.FoodEntity;
 import com.sample.spring.sevice.FoodService;
 
@@ -20,15 +25,31 @@ public class FoodApi {
 	private FoodService foodService;
 
 	@GetMapping("/foods")
-	public String getFoods() {
-		return "getFoods";
+	public List<FoodView> getFoods() {
+		return foodService.getAllFoods();
 	}
 	
 	@GetMapping("/food/{foodId}")
-	public String viewFood(
+	public FoodDetailView viewFood(
 			@PathVariable("foodId") Long foodId
 			) {
-		return "viewFood / " + foodId;
+		return FoodDetailView.builder()
+				.id(0L)
+				.name("testname")
+				.address("test address")
+				.createdAt(ZonedDateTime.now())
+				.updatedAt(ZonedDateTime.now())
+				.menus(List.of(
+						FoodDetailView.Menu.builder()
+						.foodId(0L)
+						.name("testname")
+						.price(1000)
+						.createdAt(ZonedDateTime.now())
+						.updatedAt(ZonedDateTime.now())
+						.build()
+						))
+				
+				.build();
 	}
 	
 	
