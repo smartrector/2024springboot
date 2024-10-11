@@ -43,21 +43,25 @@ public class FoodApi {
 	}
 	
 	@PutMapping("/food/{foodId}")
-	public String editFood(
+	public void editFood(
 			@PathVariable("foodId") Long foodId,
 			@RequestBody CreateAndEditFoodRequest request
 			) {
-		return "editFood" + foodId + ", name: " + request.getName() + ", address : " + request.getAddress();
+		
+		foodService.editFood(foodId, request);
+		
+//		return "editFood" + foodId + ", name: " + request.getName() + ", address : " + request.getAddress();
 	}
 	
 	
 	// #################
 	
 	@DeleteMapping("/food/{foodId}")
-	public String deleteFood(
+	public void deleteFood(
 			@PathVariable("foodId") Long foodId
 			) {
-		return "delete" + foodId;
+		
+		foodService.deleteFood(foodId);
 	}
 	
 }
