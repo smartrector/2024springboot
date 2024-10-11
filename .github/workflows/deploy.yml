@@ -20,7 +20,7 @@ jobs:
             cd /home/ubuntu/2024springboot
             sudo git pull origin main
             cd Ex11_Food
+            sudo chmod +x gradlew
             ./gradlew bootwar
-
             sudo fuser -k -n tcp 8080 || true 
             sudo nohup java -jar build/libs/*SNAPSHOT.war > ./output.log 2>&1 &
