@@ -21,5 +21,6 @@ jobs:
             sudo git pull origin main
             cd Ex11_Food
             ./gradlew bootwar
+
             sudo fuser -k -n tcp 8080 || true 
-            sudo nohup java -jar build/libs/*SNAPSHOT.jar > ./output.log 2>&1 &
+            sudo nohup java -jar build/libs/*SNAPSHOT.war > ./output.log 2>&1 &
