@@ -39,7 +39,7 @@ public class FoodApi {
 			@RequestBody CreateAndEditFoodRequest request
 			) {
 		return foodService.createFood(request);
-//		return "postFood / name: " + request.getName() + ", address : " + request.getAddress();
+//		return "postFood / name: " + request.getName() + ", address : " + request.getAddress() + ", 메뉴[0]" + request.getMenus().get(1).getName();
 	}
 	
 	@PutMapping("/food/{foodId}")
