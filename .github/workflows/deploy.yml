@@ -18,5 +18,5 @@ jobs:
           script: |
             cd /home/ubuntu/2024springboot
             git pull origin main
-            cd /Ex11_Food
+            cd Ex11_Food
             ./gradlew bootwar
