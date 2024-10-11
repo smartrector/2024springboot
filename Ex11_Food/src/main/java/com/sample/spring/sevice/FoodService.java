@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sample.spring.api.request.CreateAndEditFoodRequest;
+import com.sample.spring.api.response.FoodDetailView;
 import com.sample.spring.api.response.FoodView;
 import com.sample.spring.model.FoodEntity;
 import com.sample.spring.model.MenuEntity;
@@ -95,4 +96,35 @@ public class FoodService {
 				.build()
 				).toList() ;
 	}
+	public FoodDetailView getFoodDetail(Long foodId) {
+		FoodEntity food = foodRepository.findById(foodId).orElseThrow();
+		
+		List<MenuEntity> menus = menuRepository.findAllByFoodId(foodId);
+		
+		return FoodDetailView.builder()
+				.id(food.getId())
+				.name(food.getName())
+				.address(food.getAddress())
+				.createdAt(food.getCreatedAt())
+				.updatedAt(food.getUpdatedAt())
+				.menus(menus.stream().map((menu)->
+				
+						FoodDetailView.Menu.builder()
+						.foodId(menu.getFoodId())
+						.name(menu.getName())
+						.price(menu.getPrice())
+						.createdAt(menu.getCreatedAt())
+						.updatedAt(menu.getUpdatedAt())
+						.build()
+
+						).toList())
+				
+				.build();
+		
+	}
+	
+	
+	
+	
+	
 }

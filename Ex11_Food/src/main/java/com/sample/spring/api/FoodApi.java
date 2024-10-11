@@ -33,23 +33,7 @@ public class FoodApi {
 	public FoodDetailView viewFood(
 			@PathVariable("foodId") Long foodId
 			) {
-		return FoodDetailView.builder()
-				.id(0L)
-				.name("testname")
-				.address("test address")
-				.createdAt(ZonedDateTime.now())
-				.updatedAt(ZonedDateTime.now())
-				.menus(List.of(
-						FoodDetailView.Menu.builder()
-						.foodId(0L)
-						.name("testname")
-						.price(1000)
-						.createdAt(ZonedDateTime.now())
-						.updatedAt(ZonedDateTime.now())
-						.build()
-						))
-				
-				.build();
+		return foodService.getFoodDetail(foodId);
 	}
 	
 	
