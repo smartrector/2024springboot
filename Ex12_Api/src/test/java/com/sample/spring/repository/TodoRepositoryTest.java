@@ -38,7 +38,7 @@ public class TodoRepositoryTest {
 	
 //	@Test
 //	public void testRead() {
-//		Long tno = 1L;
+//		Long tno = 2L;
 //		Optional<TodoEntity> result = todoRepository.findById(tno);
 //		TodoEntity todo = result.orElseThrow();
 //		log.info("test//////////"+todo);

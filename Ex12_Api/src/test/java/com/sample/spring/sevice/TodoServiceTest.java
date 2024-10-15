@@ -22,7 +22,7 @@ public class TodoServiceTest {
 	@Test
 	public void testList() {
 		PageRequestDto pageRequestDto = PageRequestDto.builder()
-				.page(2)
+				.page(1)
 				.size(10)
 				.build();
 		

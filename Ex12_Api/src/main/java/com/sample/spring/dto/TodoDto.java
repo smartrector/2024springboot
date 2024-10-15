@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class TodoDto {
 	private Long tno;
 	private String title;
-	private String write;
+	private String writer;
 	private boolean complete;
 	private LocalDate dueDate;
 }

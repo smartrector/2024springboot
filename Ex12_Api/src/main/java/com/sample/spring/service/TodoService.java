@@ -20,7 +20,7 @@ public interface TodoService {
 		TodoDto todoDto = TodoDto.builder()
 				.tno(todo.getTno())
 				.title(todo.getTitle())
-				.write(todo.getWriter())
+				.writer(todo.getWriter())
 				.complete(todo.isComplete())
 				.dueDate(todo.getDueDate())
 				.build();
@@ -31,7 +31,7 @@ public interface TodoService {
 		TodoEntity todoEntity = TodoEntity.builder()
 				.tno(todoDto.getTno())
 				.title(todoDto.getTitle())
-				.writer(todoDto.getWrite())
+				.writer(todoDto.getWriter())
 				.complete(todoDto.isComplete())
 				.dueDate(todoDto.getDueDate())
 				.build();
