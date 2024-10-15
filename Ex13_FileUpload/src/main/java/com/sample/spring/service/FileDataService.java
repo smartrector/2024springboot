@@ -2,6 +2,7 @@ package com.sample.spring.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,6 +46,17 @@ public class FileDataService {
 		
 		
 		return null;
+	}
+
+
+	public byte[] downLoadImageFileSystem(Long id) throws IOException {
+		FileEntity fileData = fileDataRepository.findById(id).orElseThrow();
+		
+		String filePath = fileData.getFilePath();
+		
+		log.info("download fileData : "  + filePath);
+
+		return Files.readAllBytes(new File(filePath).toPath());
 	}
 	
 	
