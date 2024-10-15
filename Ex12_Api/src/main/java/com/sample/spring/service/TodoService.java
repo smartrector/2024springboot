@@ -1,5 +1,7 @@
 package com.sample.spring.service;
 
+import com.sample.spring.dto.PageRequestDto;
+import com.sample.spring.dto.PageResponseDto;
 import com.sample.spring.dto.TodoDto;
 import com.sample.spring.model.TodoEntity;
 
@@ -10,6 +12,8 @@ public interface TodoService {
 	
 	public void modify(TodoDto dto);
 	public void remove(Long tno);
+	
+	public PageResponseDto<TodoDto> getList(PageRequestDto pageRequestDto);
 	
 	
 	default TodoDto entityToDto(TodoEntity todo) {

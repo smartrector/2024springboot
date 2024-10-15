@@ -1,12 +1,16 @@
 package com.sample.spring.repository.search;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import com.querydsl.jpa.JPQLQuery;
+import com.sample.spring.dto.PageRequestDto;
 import com.sample.spring.model.QTodoEntity;
 import com.sample.spring.model.TodoEntity;
 
@@ -20,24 +24,25 @@ public class TodoSearchImpl extends QuerydslRepositorySupport implements TodoSea
 	}
 
 	@Override
-	public Page<TodoEntity> search1() {
+	public Page<TodoEntity> search1(PageRequestDto pageRequestDto) {
 		log.info("search1#######################");
 		
 		QTodoEntity todoEntity = QTodoEntity.todoEntity;
 		JPQLQuery<TodoEntity> query = from(todoEntity);
 		
-		query.where(todoEntity.title.contains("test"));
+//		query.where(todoEntity.title.contains("test"));
 		
-		Pageable pageable = PageRequest.of(0, 10,Sort.by("tno").descending());
+		Pageable pageable = PageRequest.of(pageRequestDto.getPage()-1, pageRequestDto.getSize(),Sort.by("tno").descending());
 		query.offset(pageable.getOffset());
 		query.limit(pageable.getPageSize());
 		query.orderBy(todoEntity.tno.desc());
-		query.fetch();
-		query.fetchCount();
+		List<TodoEntity> list =  query.fetch();
+		long total =  query.fetchCount();
 		
-		return null;
+		return new PageImpl<>(list,pageable,total);
 
 	}
+
 
 	
 }
