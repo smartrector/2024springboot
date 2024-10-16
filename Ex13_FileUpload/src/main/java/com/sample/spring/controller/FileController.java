@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sample.spring.domain.FileEntity;
 import com.sample.spring.service.FileDataService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class FileController {
 	
@@ -52,9 +55,6 @@ public class FileController {
 			) throws IOException{
 		byte[] downLoadImage = fileDataService.downLoadImageFileSystem(id);
 		
-		
-		
-		
 		if(downLoadImage != null) {
 		
 			return ResponseEntity.status(HttpStatus.OK)
@@ -66,5 +66,18 @@ public class FileController {
 		}
 		
 	}
+	
+	@GetMapping("/filelist")
+	public ResponseEntity<List<FileEntity>> getFileDataList(){
+		
+		List<FileEntity> fileDataList = fileDataService.findAll();
+		
+		if(!fileDataList.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(fileDataList);
+		}else {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+	}
+	
 	
 }
