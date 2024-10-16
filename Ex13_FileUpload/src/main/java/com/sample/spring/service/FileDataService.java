@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -62,7 +63,7 @@ public class FileDataService {
 
 
 	public List<FileEntity> findAll() {
-		return fileDataRepository.findAll();
+		return fileDataRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 	}
 	
 	
