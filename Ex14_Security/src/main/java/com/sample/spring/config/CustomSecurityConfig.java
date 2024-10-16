@@ -33,6 +33,15 @@ public class CustomSecurityConfig {
 		
 		http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
+		
+		http.formLogin(
+				config -> {
+					config.loginPage("/api/member/login");
+					config.successHandler(null); // token 발행, 200ok정보출력
+					config.failureHandler(null); // 200ok 회원자료무
+				}
+				);
+		
 		return http.build();
 	}
 	
