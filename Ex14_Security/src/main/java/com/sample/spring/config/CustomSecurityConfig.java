@@ -31,16 +31,18 @@ public class CustomSecurityConfig {
 		
 		http.csrf(config -> config.disable());
 		
-		http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); //세션비활성화
 
 		
 		http.formLogin(
 				config -> {
 					config.loginPage("/api/member/login");
-					config.successHandler(null); // token 발행, 200ok정보출력
-					config.failureHandler(null); // 200ok 회원자료무
+//					config.successHandler(null); // token 발행, 200ok정보출력
+//					config.failureHandler(null); // 200ok 회원자료무
 				}
 				);
+		
+		// http.addFilterBefore(new JWTcheckFilter(), null); // 토큰 인증 여부확인
 		
 		return http.build();
 	}
