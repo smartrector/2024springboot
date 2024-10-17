@@ -9,12 +9,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.sample.spring.security.APILoginFailHandler;
 import com.sample.spring.security.APILoginSuccessHandler;
+import com.sample.spring.security.filter.JWTCheckFilter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -45,7 +47,7 @@ public class CustomSecurityConfig {
 				}
 				);
 		
-		// http.addFilterBefore(new JWTcheckFilter(), null); // 토큰 인증 여부확인
+		http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class); // 토큰 인증 여부확인
 		
 		return http.build();
 	}
