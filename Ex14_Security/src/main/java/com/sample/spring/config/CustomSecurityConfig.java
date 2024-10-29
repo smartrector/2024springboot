@@ -57,6 +57,12 @@ public class CustomSecurityConfig {
 		});
 		
 		
+		http.exceptionHandling(config -> {
+		      config.accessDeniedHandler(new CustomAccessDeniedHandler());
+		    });
+
+		
+		
 		return http.build();
 	}
 	
@@ -68,7 +74,7 @@ public class CustomSecurityConfig {
 	@Bean
 	public CorsConfigurationSource CorsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("HEAD","GET","POST","PUT","DELETE","OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization","Cache-Control","Content-Type"));
         configuration.setAllowCredentials(true);
